@@ -120,14 +120,14 @@
         const phone = document.getElementById('user-phone').value;
         
         // ضع رقم واتسابك هنا (كود الدولة + الرقم)
-        const myNumber = "201110552701"; 
+        const myNumber = "01110552701"; 
 
         if(!selectedPackage) { alert("اختار الخدمة الأول يا زعيم!"); return; }
         if(!name || !phone || !id) { alert("كمل بياناتك عشان نشحنلك!"); return; }
 
         const message = `👑 طلب جديد من الزعيم ستور 👑%0A----------------------%0A🔥 الخدمة: ${selectedPackage}%0A👤 العميل: ${name}%0A🆔 الحساب/الـ ID: ${id}%0A📞 هاتف: ${phone}%0A----------------------`;
         
-        window.open(`https://wa.me/${201110552701}?text=${message}`, '_blank');
+        window.open(`https://wa.me/${01110552701}?text=${message}`, '_blank');
     }
 </script>
 
