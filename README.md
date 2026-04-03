@@ -3,213 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الـزعــــيــم - ELZ3EAM SHOP</title>
+    <title>الــزعــيـم STORE - 4K</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold: #ffb800;
-            --neon-blue: #00d4ff;
-            --neon-red: #ff4655;
-            --dark-bg: #050505;
-        }
+        :root { --gold: #ffb800; --red: #ff4655; --blue: #00d1ff; --dark: #050505; --card-bg: #121212; }
+        body { background-color: var(--dark); color: white; font-family: 'Cairo', sans-serif; margin: 0; padding-bottom: 50px; }
+        
+        /* واجهة الدخول */
+        #welcome-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, #1a1a1a, #000); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; }
+        .logo-box { font-size: 3.5rem; font-weight: 900; color: var(--gold); text-shadow: 0 0 20px var(--gold); margin-bottom: 30px; text-align: center; }
+        .enter-btn { padding: 15px 50px; background: transparent; border: 2px solid var(--gold); color: var(--gold); font-size: 1.5rem; font-weight: bold; cursor: pointer; border-radius: 50px; transition: 0.4s; }
+        .enter-btn:hover { background: var(--gold); color: black; box-shadow: 0 0 30px var(--gold); }
 
-        body {
-            background-color: var(--dark-bg);
-            color: white;
-            font-family: 'Cairo', sans-serif;
-            margin: 0;
-            overflow-x: hidden;
-        }
+        header { text-align: center; padding: 40px 20px; background: linear-gradient(to bottom, #111, transparent); }
+        .section-title { border-right: 5px solid var(--gold); padding-right: 15px; margin: 30px 20px 10px; font-size: 1.4rem; color: var(--gold); }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; padding: 20px; }
+        .card { background: var(--card-bg); border-radius: 15px; padding: 15px; text-align: center; border: 1px solid #222; transition: 0.3s; cursor: pointer; position: relative; }
+        .card:hover, .card.active { border-color: var(--gold); transform: translateY(-5px); background: #1a1a1a; }
+        .card img { width: 50px; margin-bottom: 10px; }
+        .price { color: var(--gold); display: block; margin-top: 5px; font-weight: bold; }
+        .badge { position: absolute; top: -5px; right: -5px; background: var(--red); font-size: 0.7rem; padding: 3px 8px; border-radius: 5px; font-weight: bold; }
 
-        /* صفحة الدخول */
-        #login-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: black;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .glow-text {
-            font-size: 3rem;
-            font-weight: 900;
-            color: white;
-            text-shadow: 0 0 20px var(--gold), 0 0 40px var(--gold);
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .enter-btn {
-            padding: 15px 50px;
-            font-size: 1.5rem;
-            background: transparent;
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            cursor: pointer;
-            border-radius: 50px;
-            transition: 0.5s;
-        }
-
-        .enter-btn:hover {
-            background: var(--gold);
-            color: black;
-            box-shadow: 0 0 30px var(--gold);
-        }
-
-        /* الواجهة الرئيسية */
-        #main-site { display: none; padding-top: 80px; }
-
-        header {
-            position: fixed;
-            top: 0; width: 100%;
-            background: rgba(0,0,0,0.9);
-            padding: 15px;
-            text-align: center;
-            border-bottom: 2px solid var(--gold);
-            z-index: 999;
-        }
-
-        .section-title {
-            text-align: center;
-            margin: 40px 0;
-            font-size: 2rem;
-            color: var(--gold);
-            text-decoration: underline;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .item-card {
-            background: #111;
-            border: 1px solid #333;
-            border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .item-card:hover {
-            border-color: var(--gold);
-            transform: scale(1.05);
-        }
-
-        .item-card img { width: 60px; margin-bottom: 10px; }
-
-        .price-tag { color: var(--gold); font-weight: bold; display: block; margin: 10px 0; }
-
-        .buy-btn {
-            background: var(--neon-red);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .pubg-btn { background: var(--neon-blue); }
-        .social-btn { background: #555; }
-
-        /* نموذج التواصل */
-        .contact-box {
-            background: #111;
-            margin: 40px 20px;
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid var(--gold);
-        }
-
-        input, select {
-            width: 100%; padding: 12px; margin: 10px 0;
-            background: #222; border: 1px solid #444;
-            color: white; border-radius: 8px; box-sizing: border-box;
-        }
-
-        .final-btn {
-            background: var(--gold);
-            color: black;
-            font-weight: bold;
-            font-size: 1.3rem;
-            border: none;
-            width: 100%;
-            padding: 15px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
+        .order-box { background: #111; margin: 20px; padding: 25px; border-radius: 15px; border: 1px solid #333; }
+        input { width: 100%; padding: 15px; margin: 10px 0; background: #000; border: 1px solid #333; color: white; border-radius: 10px; box-sizing: border-box; font-family: 'Cairo'; }
+        .send-btn { width: 100%; padding: 18px; background: linear-gradient(45deg, var(--gold), #ffa000); border: none; border-radius: 10px; font-weight: 900; font-size: 1.3rem; cursor: pointer; margin-top: 15px; }
+        
+        footer { text-align: center; color: #555; padding: 20px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-<div id="login-screen">
-    <div class="glow-text">الزعيم مشع 👑</div>
-    <p>مرحباً بك في أقوى متجر خدمات ألعاب وسوشيال ميديا</p>
-    <button class="enter-btn" onclick="enterSite()">دخول المتجر</button>
+<div id="welcome-screen">
+    <div class="logo-box">الــزعــيـم<br>STORE</div>
+    <button class="enter-btn" onclick="document.getElementById('welcome-screen').style.display='none'">دخول المتجر</button>
 </div>
 
-<div id="main-site">
-    <header>
-        <h2 style="margin:0; color: var(--gold);">الزعيم مشع SHOP</h2>
-    </header>
+<header>
+    <h1 style="color: var(--gold); font-weight: 900; margin:0;">الــزعــيـم STORE 👑</h1>
+    <p>الأقوى في عالم الشحن والخدمات</p>
+</header>
 
-    <h2 class="section-title">🔥 عروض جواهر فري فاير</h2>
-    <div class="grid-container">
-        <div class="item-card" onclick="setOrder('100 جوهرة فري فاير')">
-            <img src="https://img.icons8.com/external-flat-icons-inmotus-design/64/external-diamond-poker-flat-icons-inmotus-design.png">
-            <h3>100 جوهرة</h3>
-            <span class="price-tag">عرض خاص</span>
-            <button class="buy-btn">اختار</button>
-        </div>
-        <div class="item-card" onclick="setOrder('520 جوهرة فري فاير')">
-            <img src="https://img.icons8.com/external-flat-icons-inmotus-design/64/external-diamond-poker-flat-icons-inmotus-design.png">
-            <h3>520 جوهرة</h3>
-            <span class="price-tag">الأكثر مبيعاً</span>
-            <button class="buy-btn">اختار</button>
-        </div>
+<div class="section-title">💎 شحن فري فاير</div>
+<div class="grid">
+    <div class="card" onclick="selectItem(this, 'فري فاير - 1060 جوهرة')">
+        <div class="badge">عرض</div>
+        <img src="https://img.icons8.com/external-flat-icons-inmotus-design/64/external-diamond-poker-flat-icons-inmotus-design.png">
+        <span>1060 جوهرة</span>
+        <span class="price">150 EGP</span>
     </div>
-
-    <h2 class="section-title">🔫 عروض شدات ببجي (UC)</h2>
-    <div class="grid-container">
-        <div class="item-card" onclick="setOrder('60 شدة ببجي')">
-            <img src="https://img.icons8.com/color/64/battlegrounds-mobile-india.png">
-            <h3>60 UC</h3>
-            <span class="price-tag">شحن فوري</span>
-            <button class="buy-btn pubg-btn">اختار</button>
-        </div>
-        <div class="item-card" onclick="setOrder('325 شدة ببجي')">
-            <img src="https://img.icons8.com/color/64/battlegrounds-mobile-india.png">
-            <h3>325 UC</h3>
-            <span class="price-tag">عرض الزعيم</span>
-            <button class="buy-btn pubg-btn">اختار</button>
-        </div>
+    <div class="card" onclick="selectItem(this, 'فري فاير - 2310 جوهرة')">
+        <img src="https://img.icons8.com/external-flat-icons-inmotus-design/64/external-diamond-poker-flat-icons-inmotus-design.png">
+        <span>2310 جوهرة</span>
+        <span class="price">300 EGP</span>
     </div>
+</div>
 
-    <h2 class="section-title">🚀 زيادة متابعين سوشيال ميديا</h2>
-    <div class="grid-container">
-        <div class="item-card" onclick="setOrder('1000 متابع تيك توك')">
-            <img src="https://img.icons8.com/color/64/tiktok.png">
-            <h3>1000 متابع</h3>
-            <span class="price-tag">تيك توك</span>
-            <button class="buy-btn social-btn">اختار</button>
-        </div>
-        <div class="item-card" onclick="setOrder('1000 متابع انستقرام')">
-            <img src="https://img.icons8.com/color/64/instagram-new--v1.png">
-            <h3>1000 متابع</h3>
-            <span class="price-tag">انستقرام</span>
-            <button class="buy-btn social-btn">اختار</button>
-        </div>
+<div class="section-title">🔫 شحن ببجي</div>
+<div class="grid">
+    <div class="card" onclick="selectItem(this, 'ببجي - 660 شدة')">
+        <img src="https://img.icons8.com/color/64/pubg-mobile.png">
+        <span>660 شدة</span>
+        <span class="price">180 EGP</span>
     </div>
+</div>
 
-    <div class="contact-box" id="order-section">
-        <h2 style="color:var(--gold); text-align:center;">إتمام الطلب 📝</h2>
-        <input type="text" id="selected-service" readonly placeholder="اختار خدمة من الأعلى">
-        <input type="text" id="user-id" placeholder="الـ ID أو رابط الحساب">
-        <input type="text" id="user-name" placeholder="اسمك">
-        <input type="
+<div class="section-title">✨ خدمات السوشيال ميديا</div>
+<div class="grid">
+    <div class="card" onclick="selectItem(this, '1000 متابع تيك توك')">
+        <img src="https://img.icons8.com/color/64/tiktok.png">
+        <span>1000 متابع</span>
+        <span class="price">50 EGP</span>
+    </div>
+</div>
+
+<div class="section-title">🌸 قسم العطور</div>
+<div class="grid">
+    <div class="card" onclick="selectItem(this, 'عطر الزعيم الملكي')">
+        <img src="https://img.icons8.com/fluency/64/perfume-bottle.png">
+        <span>عطر ملكي</span>
+        <span class="price">450 EGP</span>
+    </div>
+</div>
+
+<div class="order-box">
+    <h3 style="text-align:center; color:var(--gold);">اتمام الطلب 📝</h3>
+    <p id="selected-text" style="text-align:center; color:var(--blue);">لم يتم اختيار عرض بعد</p>
+    <input type="text" id="user-name" placeholder="الاسم / اسم الحساب">
+    <input type="text" id="user-id" placeholder="الـ ID (للألعاب)">
+    <input type="number" id="user-phone" placeholder="رقم الواتساب الخاص بك">
+    <button class="send-btn" onclick="sendToWhatsApp()">إرسال الطلب للزعيم ✅</button>
+</div>
+
+<footer>&copy; 2026 تصميم وبرمجة الــزعــيـم</footer>
+
+<script>
+    let selectedPackage = "";
+
+    function selectItem(element, name) {
+        document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+        element.classList.add('active');
+        selectedPackage = name;
+        document.getElementById('selected-text').innerText = "تم اختيار: " + name;
+    }
+
+    function sendToWhatsApp() {
+        const name = document.getElementById('user-name').value;
+        const id = document.getElementById('user-id').value;
+        const phone = document.getElementById('user-phone').value;
+        
+        // ضع رقمك هنا (كود الدولة + الرقم)
+        const myNumber = "201012345678"; 
+
+        if(!selectedPackage) { alert("اختار العرض الأول يا زعيم!"); return; }
+        if(!name || !phone) { alert("اكتب اسمك ورقمك عشان نتواصل معاك!"); return; }
+
+        const message = `👑 طلب جديد من متجر الزعيم 👑%0A----------------------%0A🔥 الخدمة: ${selectedPackage}%0A👤 الاسم: ${name}%0A🆔 الـ ID: ${id}%0A📞 هاتف العميل: ${phone}%0A----------------------`;
+        
+        window.open(`https://wa.me/${myNumber}?text=${message}`, '_blank');
+    }
+</script>
+
+</body>
+</html>
