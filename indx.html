@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELZ3EAM FREE FIRE</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    text-align: center;
+}
+.container {
+    margin-top: 50px;
+}
+h1 {
+    color: #ffcc00;
+}
+form {
+    background: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 15px;
+    display: inline-block;
+}
+input, select {
+    width: 90%;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+}
+button {
+    padding: 10px 20px;
+    background: #ffcc00;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+button:hover {
+    background: #ffaa00;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>ELZ3EAM FREE FIRE</h1>
+    <p>شحن جواهر فري فاير بسرعة وأمان</p>
+
+    <form onsubmit="sendData(event)">
+        <input type="text" id="playerID" placeholder="ادخل ID اللاعب" required><br>
+
+        <select id="diamonds">
+            <option value="100">100 جوهرة</option>
+            <option value="310">310 جوهرة</option>
+            <option value="520">520 جوهرة</option>
+            <option value="1060">1060 جوهرة</option>
+        </select><br>
+
+        <input type="text" id="contact" placeholder="وسيلة التواصل (واتساب/فيس)" required><br>
+
+        <button type="submit">إرسال الطلب</button>
+    </form>
+</div>
+
+<script>
+function sendData(e) {
+    e.preventDefault();
+
+    let id = document.getElementById("playerID").value;
+    let diamonds = document.getElementById("diamonds").value;
+    let contact = document.getElementById("contact").value;
+
+    let message = `طلب شحن جديد:%0AID: ${id}%0Aالجواهر: ${diamonds}%0Aتواصل: ${contact}`;
+
+    // ضع رقمك هنا
+    let phone = "201000000000";
+
+    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+}
+</script>
+
+</body>
+</html>
